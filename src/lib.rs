@@ -7,7 +7,7 @@ use std::convert::TryInto;
 use std::env;
 
 #[derive(Debug)]
-struct ProcessPort {
+pub struct ProcessPort {
     kind: &'static str,
     process: Process,
     port: u16,
@@ -43,7 +43,7 @@ fn ports_to_processes() -> Vec<ProcessPort> {
     result
 }
 
-fn kill_process_by_port(arg: String, ports_processes: &Vec<ProcessPort>) -> Result<String, String> {
+pub fn kill_process_by_port(arg: String, ports_processes: &Vec<ProcessPort>) -> Result<String, String> {
     let port: u16 = arg
         .parse()
         .map_err(|_| format!("Cannot parse port '{}' as number", arg))?;
@@ -67,7 +67,7 @@ fn kill_process_by_port(arg: String, ports_processes: &Vec<ProcessPort>) -> Resu
     }
 }
 
-fn kill_process_by_pid(arg: String) -> Result<String, String> {
+pub fn kill_process_by_pid(arg: String) -> Result<String, String> {
     smol::block_on(async {
         if let Ok(pid) = arg.parse() {
             if let Ok(process) = heim::process::get(pid).await {
@@ -101,7 +101,7 @@ fn kill_process_by_pid(arg: String) -> Result<String, String> {
     })
 }
 
-fn kill_process_by_arg(args: &Vec<String>) -> Vec<Result<String, String>> {
+pub fn kill_process_by_arg(args: &Vec<String>) -> Vec<Result<String, String>> {
     let ports_processes = ports_to_processes();
     args.iter()
         .map(|arg| {
@@ -115,24 +115,24 @@ fn kill_process_by_arg(args: &Vec<String>) -> Vec<Result<String, String>> {
         .collect()
 }
 
-fn main() {
-    let args: Vec<String> = env::args().collect();
-    let app = App::new(env!("CARGO_PKG_NAME"))
-        .author(env!("CARGO_PKG_AUTHORS"))
-        .version(env!("CARGO_PKG_VERSION"))
-        .usage("rkill 1234 7777 nc  # to kill processes by PID or name\n\trkill :1234 :7777   # to kill processes by port number\n\trkill               # run interactively")
-        .action(|c| {
-            if c.args.len() == 0 {
-                c.help();
-                return
-            };
-            kill_process_by_arg(&c.args).iter().for_each(|result| {
-                match result {
-                    Ok(ok) => println!("{} {}","\u{2705}".green(),ok),
-                    Err(err) => println!("{} {}","\u{274C}".red(), err)
-                }
-            })
-        });
+// fn main() {
+//     let args: Vec<String> = env::args().collect();
+//     let app = App::new(env!("CARGO_PKG_NAME"))
+//         .author(env!("CARGO_PKG_AUTHORS"))
+//         .version(env!("CARGO_PKG_VERSION"))
+//         .usage("rkill 1234 7777 nc  # to kill processes by PID or name\n\trkill :1234 :7777   # to kill processes by port number\n\trkill               # run interactively")
+//         .action(|c| {
+//             if c.args.len() == 0 {
+//                 c.help();
+//                 return
+//             };
+//             kill_process_by_arg(&c.args).iter().for_each(|result| {
+//                 match result {
+//                     Ok(ok) => println!("{} {}","\u{2705}".green(),ok),
+//                     Err(err) => println!("{} {}","\u{274C}".red(), err)
+//                 }
+//             })
+//         });
 
-    app.run(args);
-}
+//     app.run(args);
+// }
