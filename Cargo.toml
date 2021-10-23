@@ -1,5 +1,5 @@
 [package]
-name = "rkill"
+name = "rkill-lib"
 description = "kill process by name, pid or port number"
 license = "MIT"
 documentation = "https://github.com/reflog/rkill"
@@ -17,4 +17,3 @@ smol = "1.2.5"
 futures = "0.3.15"
 colored = "2.0.0"
 seahorse = "1.1.2"
-
