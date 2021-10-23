@@ -1,5 +1,5 @@
 [package]
-name = "rkill-lib"
+name = "rkill_lib"
 description = "kill process by name, pid or port number"
 license = "MIT"
 documentation = "https://github.com/reflog/rkill"
