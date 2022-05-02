@@ -4,7 +4,7 @@ description = "kill process by name, pid or port number"
 license = "MIT"
 documentation = "https://github.com/weiforce/rkill-lib"
 homepage = "https://github.com/weiforce/rkill-lib"
-version = "0.1.2"
+version = "0.1.3"
 authors = ["Eli Yukelzon <reflog@gmail.com>"]
 edition = "2018"
 

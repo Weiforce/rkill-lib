@@ -1,10 +1,10 @@
-use colored::*;
+// use colored::*;
 use heim::process::{Pid, Process};
 use netstat2::{get_sockets_info, AddressFamilyFlags, ProtocolFlags, ProtocolSocketInfo};
-use seahorse::App;
+// use seahorse::App;
 use smol::stream::StreamExt;
 use std::convert::TryInto;
-use std::env;
+// use std::env;
 
 #[derive(Debug)]
 pub struct ProcessPort {
@@ -114,25 +114,3 @@ pub fn kill_process_by_arg(args: &Vec<String>) -> Vec<Result<String, String>> {
         })
         .collect()
 }
-
-// fn main() {
-//     let args: Vec<String> = env::args().collect();
-//     let app = App::new(env!("CARGO_PKG_NAME"))
-//         .author(env!("CARGO_PKG_AUTHORS"))
-//         .version(env!("CARGO_PKG_VERSION"))
-//         .usage("rkill 1234 7777 nc  # to kill processes by PID or name\n\trkill :1234 :7777   # to kill processes by port number\n\trkill               # run interactively")
-//         .action(|c| {
-//             if c.args.len() == 0 {
-//                 c.help();
-//                 return
-//             };
-//             kill_process_by_arg(&c.args).iter().for_each(|result| {
-//                 match result {
-//                     Ok(ok) => println!("{} {}","\u{2705}".green(),ok),
-//                     Err(err) => println!("{} {}","\u{274C}".red(), err)
-//                 }
-//             })
-//         });
-
-//     app.run(args);
-// }

@@ -1,18 +1,20 @@
+## rkill_lib (forked from reflog/rkill)
+
+[![Build status](https://api.travis-ci.org/FauxFaux/kill-desktop.png)](https://travis-ci.org/FauxFaux/kill-desktop)
+[![](https://img.shields.io/crates/v/rkill_lib.svg)](https://crates.io/crates/rkill_lib)
+
+`rkill_lib` helps you kill any processes by PID/name/port number.
+
+### config
+
+```toml
+[dependencies]
+rkill_lib = "0.1.3"
 ```
-Name:
-        rkill
 
-Author:
-        Eli Yukelzon <reflog@gmail.com>
+### Usage
 
-Usage:
-        rkill 1234 7777 nc  # to kill processes by PID or name
-        rkill :1234 :7777   # to kill processes by port number
-        rkill               # run interactively
-
-Flags:
-        -h, --help : Show help
-
-Version:
-        0.1.0
+```rust
+// kill a process by name/PID
+rkill_lib::kill_process_by_pid("nginx".to_string());
 ```
