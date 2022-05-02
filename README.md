@@ -1,6 +1,5 @@
 ## rkill_lib (forked from reflog/rkill)
 
-[![Build status](https://api.travis-ci.org/FauxFaux/kill-desktop.png)](https://travis-ci.org/FauxFaux/kill-desktop)
 [![](https://img.shields.io/crates/v/rkill_lib.svg)](https://crates.io/crates/rkill_lib)
 
 `rkill_lib` helps you kill any processes by PID/name/port number.
